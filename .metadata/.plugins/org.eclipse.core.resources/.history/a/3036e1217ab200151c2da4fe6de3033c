@@ -1,0 +1,169 @@
+package strings;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Questions {
+	public String pangram(String s){
+		boolean[] alphabet =  new boolean[26];
+		for(int i =0;i<alphabet.length;i++){
+			alphabet[i] = false;
+		}
+		StringBuilder builder =new StringBuilder(s.replaceAll("\\s",""));
+		System.out.println(builder.toString());
+		if(builder.length()<26)
+			return "not pangram";
+		else{
+			for(int i =0;i<builder.length();i++){
+				if(builder.charAt(i)-97<0){
+					alphabet[builder.charAt(i)-65] = true;
+				}
+				else{
+					alphabet[builder.charAt(i)-97] = true;
+				}
+			}
+		}
+		boolean isPangram = true;
+		for(int i =0;i<alphabet.length;i++){
+			if(!alphabet[i]){
+				isPangram = false;
+				break;
+			}
+		}
+		if(isPangram)
+			return "pangram";
+		else
+			return "not pangram";
+		
+	}
+	public void funnyString(){
+		Scanner scanner = new Scanner(System.in);
+		int T = scanner.nextInt();
+		String[] strs = new String[T];
+		int n =0;
+		while(n<T){
+			strs[n] = scanner.next();
+			n++;
+		}
+		//String input = scanner.nextLine();
+		for(int j =0;j<strs.length;j++){
+		String s = strs[j];
+		StringBuilder r = new StringBuilder(s);
+		r.reverse();
+		int p = 0;
+		int q= 0;
+		boolean isFunny = true;
+		for(int i=1;i<s.length();i++){
+			p = Math.abs(s.charAt(i)-s.charAt(i-1));
+			q = Math.abs(r.charAt(i)-r.charAt(i-1));
+			if(p!=q){
+				isFunny = false;
+				break;
+			}
+		}
+		if(isFunny)
+			System.out.println("Funny");
+		else
+			System.out.println("Not Funny");
+		}
+		scanner.close();
+	}
+	public static void StairCase(int n)
+	{
+		 for(int i=0;i<n;i++){
+             for(int j=0;j<n-i-1;j++){
+                 System.out.print(" ");
+             } 
+          for(int k= 0;k<i+1;k++){
+        	  System.out.print("#");
+          }
+          if(i!=n-1){
+          System.out.println();
+          }
+      }
+	}
+	public static int TrailingZeros(int N){
+	
+		int count=0;
+		for(int i=5;N/i>=1;i=i*5){
+			count+=N/i;
+		}
+		return count;
+		
+	}
+	public static int countDuplicates(int[] numbers){
+		int count=0;
+		HashMap<Integer, Integer> map = new HashMap<Integer,Integer>();
+		for(int i=0;i<numbers.length;i++){
+			if(map.containsKey(numbers[i])){
+				map.put(numbers[i],map.get(numbers[i])+1);
+			}
+			else{
+				map.put(numbers[i],1);
+			}
+		}
+		Iterator<Integer> keyIt = map.keySet().iterator();
+		while(keyIt.hasNext()){
+			if(map.get(keyIt.next())>=2){
+				count++;
+			}
+		}
+		return count;
+	}
+	public static int countDifferenceK(){
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt();
+		int K = sc.nextInt();
+		long[] inputArray = new long[N];
+		for(int i=0;i<N;i++){
+			inputArray[i]= sc.nextLong();
+		}
+
+		sc.close();
+		int count = 0;
+		Arrays.sort(inputArray);
+		for(int i=0;i<N;i++){
+			System.out.print(inputArray[i]+" ");
+		}
+		
+		for(int i = 0;i<inputArray.length-1;i++){
+			if((Arrays.binarySearch(inputArray,i+1,N,inputArray[i]+K))>0){
+				count++;
+			}
+		}
+		
+		return count;
+		
+	}
+	public static int numberOfTopics(){
+		
+		Scanner in =new Scanner(System.in);
+		int N = in.nextInt();  
+		int M=in.nextInt();
+		long []input=new long[N];
+		for(int i=0;i<M;i++){
+		int firstIndex=in.nextInt();
+		int secondIndex=in.nextInt();
+		long K=in.nextLong();
+		input[firstIndex]+=K;
+		if((secondIndex+1)<=N) 
+			input[secondIndex+1]-=K;
+		}
+		in.close();
+		long max = 0;
+        long x = 0;
+    for(int i=1;i<=N;i++)
+    {
+       x=x+a[i];
+       if(max<x) 
+           max=x;
+
+     }
+		System.out.println(max); 
+		
+	}
+
+}

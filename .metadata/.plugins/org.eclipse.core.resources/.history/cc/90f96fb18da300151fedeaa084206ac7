@@ -1,0 +1,76 @@
+package strings;
+
+import java.util.Scanner;
+
+public class Questions {
+	public String pangram(String s){
+		boolean[] alphabet =  new boolean[26];
+		for(int i =0;i<alphabet.length;i++){
+			alphabet[i] = false;
+		}
+		StringBuilder builder =new StringBuilder(s.replaceAll("\\s",""));
+		System.out.println(builder.toString());
+		if(builder.length()<26)
+			return "not pangram";
+		else{
+			for(int i =0;i<builder.length();i++){
+				if(builder.charAt(i)-97<0){
+					alphabet[builder.charAt(i)-65] = true;
+				}
+				else{
+					alphabet[builder.charAt(i)-97] = true;
+				}
+			}
+		}
+		boolean isPangram = true;
+		for(int i =0;i<alphabet.length;i++){
+			if(!alphabet[i]){
+				isPangram = false;
+				break;
+			}
+		}
+		if(isPangram)
+			return "pangram";
+		else
+			return "not pangram";
+		
+	}
+	public void funnyString(){
+		Scanner scanner = new Scanner(System.in);
+		int T = scanner.nextInt();
+		String[] strs = new String[T];
+		int n =0;
+		while(n<T){
+			strs[n] = scanner.next();
+			n++;
+		}
+		//String input = scanner.nextLine();
+		for(int j =0;j<strs.length;j++){
+			System.out.println("String "+j+strs[j]);
+		StringBuilder s = new StringBuilder(strs[j]);
+		StringBuilder r = s.reverse();
+		System.out.println(s.toString());
+		System.out.println(r.toString());
+		int p = 0;
+		int q= 0;
+		boolean isFunny = true;
+		for(int i=1;i<s.length();i++){
+			System.out.println(s.charAt(i));
+			p = Math.abs(s.charAt(i)-s.charAt(i-1));
+			q = Math.abs(r.charAt(i)-r.charAt(i-1));
+			System.out.println("P: ="+p);
+			System.out.println("Q: ="+q);
+			if(p!=q){
+				isFunny = false;
+				break;
+			}
+		}
+		if(isFunny)
+			System.out.println("Funny");
+		else
+			System.out.println("Not Funny");
+		}
+		scanner.close();
+	}
+
+}

@@ -1,0 +1,50 @@
+package strings;
+
+import java.util.Scanner;
+
+public class Questions {
+	public String pangram(String s){
+		boolean[] alphabet =  new boolean[26];
+		for(int i =0;i<alphabet.length;i++){
+			alphabet[i] = false;
+		}
+		StringBuilder builder =new StringBuilder(s.replaceAll("\\s",""));
+		System.out.println(builder.toString());
+		if(builder.length()<26)
+			return "not pangram";
+		else{
+			for(int i =0;i<builder.length();i++){
+				if(builder.charAt(i)-97<0){
+					alphabet[builder.charAt(i)-65] = true;
+				}
+				else{
+					alphabet[builder.charAt(i)-97] = true;
+				}
+			}
+		}
+		boolean isPangram = true;
+		for(int i =0;i<alphabet.length;i++){
+			if(!alphabet[i]){
+				isPangram = false;
+				break;
+			}
+		}
+		if(isPangram)
+			return "pangram";
+		else
+			return "not pangram";
+		
+	}
+	public void funnyString(){
+		Scanner scanner = new Scanner(System.in);
+		String input = scanner.nextLine();
+		StringBuilder s = new StringBuilder(input);
+		StringBuilder r = s.reverse();
+		int p = 0;
+		int q= 0;
+		for(int i=1;i<s.length();i++){
+			p = Math.abs(s.charAt(i)-s.charAt(i-1));
+		}
+	}
+
+}

@@ -1,0 +1,17 @@
+package strings;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Questions q = new Questions();
+		//String a =q.pangram("We promptly judged antique ivory buckles for the next prize");
+		//q.funnyString();
+		//Questions.StairCase(6);
+		int [] test = {1,3,1,4,5,6,6,3,2};
+		//System.out.println(Questions.TrailingZeros(23));
+		//System.out.println(Questions.countDuplicates(test));
+		//System.out.println(a);
+		Questions.countDifferenceK();
+	}
+
+}

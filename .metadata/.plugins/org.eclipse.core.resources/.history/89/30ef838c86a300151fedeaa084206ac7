@@ -1,0 +1,11 @@
+package strings;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Questions q = new Questions();
+		String a =q.pangram("We promptly judged antique ivory buckles for the next prie");
+		System.out.println(a);
+	}
+
+}
